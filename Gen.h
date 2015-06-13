@@ -14,3 +14,4 @@ class Gen{
 		int* chromosome;
 		float fitness;
 }
+#endif

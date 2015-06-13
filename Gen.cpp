@@ -1,5 +1,5 @@
 #include "Gen.h"
-#include "Solution"
+#include "Solution.h"
 
 Gen::Gen(int* _chromosome){
 	chromosome = _chromosome;
