@@ -3,8 +3,10 @@
 #include <vector>
 #include "Solution.h"
 #include "Instance.h"
+#include "Config.h"
 class Genotype{
 	public:
+		Genotype();
 		Genotype(int,int);
 		Genotype(int*,int,int);
 		int* get_gene();
@@ -18,6 +20,9 @@ class Genotype{
 		void course_swap(int,int);
 		int get_courses();
 		int get_periods();
+		~Genotype();
+		Genotype& operator=(Genotype);
+		void free_gene();
 	private:
 		int* gene;
 		float fitness;
@@ -25,5 +30,5 @@ class Genotype{
 		float cfitness;
 		int courses;
 		int periods;
-}
+};
 #endif

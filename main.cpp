@@ -14,6 +14,8 @@ int main (int argc, char const *argv[]){
 	
 	Instance i = InstanceReader::read_instance(argv[1]);
 	i.print_params();
-	Solution s = SolverGA::solve_instance(i);
+	SolverGA solverGA = SolverGA();
+	Solution s = solverGA.solve_instance(i);
+	s.show_solution();
 	return 0;
 }

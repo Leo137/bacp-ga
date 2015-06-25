@@ -4,7 +4,7 @@
 class Solution{
 	public:
 		Solution();
-		Solution(std::vector<int>*,int*,int,int,float);
+		Solution(std::vector<int>*,int*,int,int,float,float);
 		void show_solution();
 		std::vector<int>* get_assignation();
 		int* get_credits_period();
@@ -16,6 +16,7 @@ class Solution{
 		int * credits_period;
 		int max_credits;
 		int periods;
+		float fitness;
 		float time_execution;
 };
 #endif

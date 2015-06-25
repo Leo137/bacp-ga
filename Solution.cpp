@@ -5,11 +5,13 @@
 #include "Solution.h"
 Solution::Solution(){
 }
-Solution::Solution(std::vector<int>* _assignation, int* _credits_period, int _max_credits, int _periods){
+Solution::Solution(std::vector<int>* _assignation, int* _credits_period, int _max_credits, int _periods, float _fitness, float _time_execution){
 	assignation = _assignation;
 	credits_period = _credits_period;
 	max_credits = _max_credits;
 	periods = _periods;
+	fitness = _fitness;
+	time_execution = _time_execution;
 }
 void Solution::show_solution(){
 	int i,j;
@@ -26,7 +28,8 @@ void Solution::show_solution(){
 	}
 	std::cout << std::endl;
 	std::cout << "Maxima carga academica " << max_credits << std::endl;
-	std::cout << "Tiempo ejecucion " << std::fixed << std::setprecision(2) << time_execution << " s" << std::endl;
+	std::cout << "Fitness " << fitness << std::endl;
+	std::cout << "Tiempo ejecucion " << std::fixed << std::setprecision(2) << time_execution << " ms" << std::endl;
 }
 std::vector<int>* Solution::get_assignation(){
 	return assignation;
@@ -40,7 +43,6 @@ int Solution::get_max_credits(){
 int Solution::get_periods(){
 	return periods;
 }
-
 float Solution::get_time_execution(){
 	return time_execution;
 }
