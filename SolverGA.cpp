@@ -124,11 +124,24 @@ Solution SolverGA::get_solution(Genotype genotype,Instance instance,double diff_
 void SolverGA::calculate_relative_fitness(std::vector<Genotype>* population){
 	int i;
 	float sum = 0;
+	float max_fit = 0;
+	float min_fit = 999999999999;
+	float adjust = 0;
 	for(i=0;i<POPULATION_SIZE;i++){
-		sum += (*population)[i].get_fitness();
+		if((*population)[i].get_fitness() > max_fit){
+			max_fit = (*population)[i].get_fitness();
+		}
+		if((*population)[i].get_fitness() < min_fit){
+			min_fit = (*population)[i].get_fitness();
+		}
 	}
+	adjust = max_fit + min_fit;
 	for(i=0;i<POPULATION_SIZE;i++){
-		(*population)[i].set_rfitness((*population)[i].get_fitness()/sum);
+		sum += (adjust-(*population)[i].get_fitness());
+	}
+	
+	for(i=0;i<POPULATION_SIZE;i++){
+		(*population)[i].set_rfitness((adjust-(*population)[i].get_fitness())/sum);
 	}
 }
 
@@ -213,7 +226,7 @@ void SolverGA::elitism(std::vector<Genotype>* population,Genotype* best,int iter
 	int i;
 	for(i=0;i<(int)(*population).size();i++){
 		if((*population)[i].get_fitness()<(*best).get_fitness()){
-			std::cout << "Nuevo best: " << (*population)[i].get_fitness() << " en iteracion " << iter+1 << "." << std::endl;
+			//std::cout << "Nuevo best: " << (*population)[i].get_fitness() << " en iteracion " << iter+1 << "." << std::endl;
 			(*best) = (*population)[i];
 		}
 	}

@@ -1,8 +1,8 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-#define SELECTION_SIZE 25
-#define POPULATION_SIZE 500
+#define SELECTION_SIZE 30
+#define POPULATION_SIZE 330
 #define MAX_ITERS 7000
 #define LAMBDA 1000
 #define CHANCE_CROSS 90

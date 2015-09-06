@@ -1,5 +1,6 @@
 #include "Genotype.h"
 #include "Solution.h"
+#include <cmath>
 
 Genotype::Genotype(){
 }
@@ -45,6 +46,7 @@ void Genotype::calculate_fitness(Instance instance){
 	int max_load = 0;
 	int sum_load = 0;
 	float avg_load;
+	float desv_load = 0;
 	int i,c_1,c_2;
 	int r = 0;
 	// Asignacion de cargas en periodos
@@ -64,6 +66,9 @@ void Genotype::calculate_fitness(Instance instance){
 		sum_load += period_load[i];
 	}
 	avg_load = ((float)sum_load)/((float)periods);
+	for(i=0;i<periods;i++){
+		desv_load += std::abs(avg_load - period_load[i]);
+	}
 	// Calculo de incumplimiento de restricciones
 	// Min-Max creditos y cursos por periodo
 	for(i=0;i<periods;i++){
@@ -89,8 +94,7 @@ void Genotype::calculate_fitness(Instance instance){
 		}
 	}
 	// Asignar fitness del individuo
-	fitness = max_load + avg_load + r*PENALIZE;
-	// Liberacion memoria
+	fitness = max_load + desv_load + r*PENALIZE;
 }
 void Genotype::course_swap(int a,int b){
 	int temp = gene[a];
